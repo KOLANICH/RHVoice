@@ -98,6 +98,7 @@ int main(int argc,const char* argv[])
       TCLAP::ValueArg<std::string> outpath_arg("o","output","output file",false,"","path",cmd);
       TCLAP::SwitchArg ssml_switch("s","ssml","Process as ssml",cmd,false);
       TCLAP::ValueArg<std::string> voice_arg("p","profile","voice profile",false,"","spec",cmd);
+      TCLAP::ValueArg<uint32_t> sample_rate("R","sample-rate","sample rate",false, 24000,"Hz",cmd);
       cmd.parse(argc,argv);
       std::ifstream f_in;
       if(inpath_arg.getValue()!="-")
@@ -107,6 +108,7 @@ int main(int argc,const char* argv[])
             throw std::runtime_error("Cannot open the input file");
         }
       audio_player player(outpath_arg.getValue());
+      player.set_sample_rate(sample_rate.getValue());
       smart_ptr<engine> eng(new engine);
       voice_profile profile;
       if(!voice_arg.getValue().empty())
