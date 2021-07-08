@@ -38,7 +38,8 @@ namespace RHVoice
       bool str_equal(const std::wstring& s1,const std::wstring& s2) const;
 
       typedef std::map<std::wstring,std::wstring,str_less> attribute_map;
-      _COM_SMARTPTR_TYPEDEF(ISpObjectTokenInit,__uuidof(ISpObjectTokenInit));
+      typedef _com_ptr_t <_com_IIID<ISpObjectTokenInit, &IID_ISpObjectTokenInit>> ISpObjectTokenInitPtr;
+
 
       attribute_map attributes;
     };
